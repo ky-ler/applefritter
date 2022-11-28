@@ -8,7 +8,23 @@ import { useState } from "react";
 import { trpc } from "../utils/trpc";
 
 const Posts = () => {
+  const { data: session } = useSession();
   const { data: posts, isLoading } = trpc.posts.getAll.useQuery();
+  const utils = trpc.useContext();
+
+  const deletePost = trpc.posts.deletePost.useMutation({
+    onMutate: () => {
+      utils.posts.getAll.cancel();
+      const optimisticUpdate = utils.posts.getAll.getData();
+
+      if (optimisticUpdate) {
+        utils.posts.getAll.setData(undefined, optimisticUpdate);
+      }
+    },
+    onSettled: () => {
+      utils.posts.getAll.invalidate();
+    },
+  });
 
   if (isLoading) return <div>Fetching Posts.....</div>;
 
@@ -16,9 +32,18 @@ const Posts = () => {
     <div className="flex flex-col gap-4">
       {posts?.map((post, index) => {
         return (
-          <div key={index}>
+          <div key={index} id={post.id}>
             <span>{post.user.name}</span>
             <p>{post.content}</p>
+            {session && post.user.id === session.user?.id ? (
+              <button
+                onClick={() => {
+                  deletePost.mutate({ postId: post.id });
+                }}
+              >
+                DELETE
+              </button>
+            ) : null}
           </div>
         );
       })}
@@ -31,7 +56,7 @@ const NewPost = () => {
   const [content, setContent] = useState("");
   const utils = trpc.useContext();
 
-  const postMessage = trpc.posts.createPost.useMutation({
+  const newPost = trpc.posts.createPost.useMutation({
     onMutate: () => {
       utils.posts.getAll.cancel();
       const optimisticUpdate = utils.posts.getAll.getData();
@@ -52,7 +77,7 @@ const NewPost = () => {
         event.preventDefault();
 
         if (session !== null) {
-          postMessage.mutate({
+          newPost.mutate({
             authorId: session.user?.id as string,
             content,
           });
@@ -64,7 +89,7 @@ const NewPost = () => {
       <input
         type="text"
         value={content}
-        placeholder="Your message..."
+        placeholder="New post..."
         minLength={2}
         maxLength={100}
         onChange={(event) => setContent(event.target.value)}
@@ -96,18 +121,18 @@ const Home: NextPage = () => {
                 height={50}
                 className="rounded-full"
               />
-              <NewPost />
             </>
           )}
           <p>Hi {session.user?.name} </p>
           <button onClick={() => signOut()}>Logout</button>
+          <NewPost />
         </>
       ) : (
         <>
           <button onClick={() => signIn("discord")}>Login with Discord</button>
         </>
       )}
-      <div className="flex w-full flex-col border">
+      <div className="mt-4 flex w-full flex-col border">
         <Posts />
       </div>
     </main>

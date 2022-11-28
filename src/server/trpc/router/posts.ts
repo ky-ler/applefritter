@@ -8,6 +8,7 @@ export const postsRouter = router({
       return await ctx.prisma.post.findMany({
         select: {
           user: true,
+          id: true,
           content: true,
         },
         orderBy: {
@@ -31,6 +32,19 @@ export const postsRouter = router({
           data: {
             authorId: input.authorId,
             content: input.content,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+  deletePost: protectedProcedure
+    .input(z.object({ postId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.post.delete({
+          where: {
+            id: input.postId,
           },
         });
       } catch (error) {
