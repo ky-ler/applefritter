@@ -4,4 +4,5 @@
 
 body {
   @apply bg-neutral-900 text-neutral-200;
+  font-family: "Inter", sans-serif;
 }
