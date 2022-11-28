@@ -10,6 +10,8 @@ export const postsRouter = router({
           user: true,
           id: true,
           content: true,
+          createdAt: true,
+          favorites: true,
         },
         orderBy: {
           createdAt: "desc",
@@ -45,6 +47,33 @@ export const postsRouter = router({
         return await ctx.prisma.post.delete({
           where: {
             id: input.postId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+  addFavorite: protectedProcedure
+    .input(z.object({ postId: z.string(), userId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.favorite.create({
+          data: {
+            postId: input.postId,
+            userId: input.userId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+  removeFavorite: protectedProcedure
+    .input(z.object({ favoriteId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.favorite.delete({
+          where: {
+            id: input.favoriteId,
           },
         });
       } catch (error) {
