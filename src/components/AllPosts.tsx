@@ -23,14 +23,16 @@ export const AllPosts = () => {
           >
             <div className="flex justify-between">
               <span>
-                <Link href="#">@{post.user.name}</Link> &bull;{" "}
-                {dayjs(post.createdAt).fromNow()}{" "}
+                <Link className="text-emerald-400" href="#">
+                  @{post.user.name}
+                </Link>{" "}
+                &bull; {dayjs(post.createdAt).fromNow()}{" "}
               </span>
               <span className="text-right">
                 <DeletePostBtn postId={post.id} postUserId={post.user.id} />
               </span>
             </div>
-            <p>{post.content}</p>
+            <p className="py-4">{post.content}</p>
             <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
             {post.favorites.length}
           </div>
