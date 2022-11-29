@@ -19,7 +19,7 @@ export const AllPosts = () => {
           <div
             key={index}
             id={post.id}
-            className="border-b border-zinc-800 p-4 first:border-t"
+            className="border-b border-zinc-800 p-4 first:border-t md:border-x"
           >
             <div className="flex justify-between">
               <span>
@@ -33,8 +33,10 @@ export const AllPosts = () => {
               </span>
             </div>
             <p className="py-4">{post.content}</p>
-            <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
-            {post.favorites.length}
+            <div>
+              <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
+              {post.favorites.length}
+            </div>
           </div>
         );
       })}

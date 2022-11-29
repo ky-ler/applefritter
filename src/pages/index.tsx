@@ -17,28 +17,42 @@ const Home: NextPage = () => {
     return <main className="flex flex-col items-center pt-4">Loading...</main>;
 
   return (
-    <main className="flex flex-col items-center">
+    <main className="flex max-w-4xl flex-col p-4">
       {session ? (
-        <>
-          {session.user?.image && (
-            <>
-              <Image
-                src={session.user?.image}
-                alt=""
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
-            </>
-          )}
-          <p>Hi {session.user?.name} </p>
-          <button onClick={() => signOut()}>Logout</button>
-          <NewPostForm />
-        </>
+        <div className="flex justify-around">
+          <div className="flex flex-col items-center justify-end">
+            {session.user?.image && (
+              <>
+                <Image
+                  src={session.user?.image}
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="rounded-full"
+                />
+              </>
+            )}
+            <p>Hi {session.user?.name} </p>
+            <button
+              onClick={() => signOut()}
+              className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
+            >
+              Logout
+            </button>
+          </div>
+          <div className="pt-4">
+            <NewPostForm />
+          </div>
+        </div>
       ) : (
-        <>
-          <button onClick={() => signIn("discord")}>Login with Discord</button>
-        </>
+        <div className="flex items-center justify-center">
+          <button
+            onClick={() => signIn("discord")}
+            className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
+          >
+            Login with Discord
+          </button>
+        </div>
       )}
       <div className="mt-4 flex w-full flex-col break-words">
         <AllPosts />

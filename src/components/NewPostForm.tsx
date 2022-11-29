@@ -34,19 +34,19 @@ export const NewPostForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-end">
+    <div className="flex flex-col">
       <TextareaAutosize
         value={content}
         placeholder="New post..."
         minLength={2}
         maxLength={280}
         onChange={(event) => setContent(event.target.value)}
-        className="rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 focus:outline-none"
+        className="rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:outline-none"
       />
       <button
-        type="submit"
+        onClick={handleSubmit}
         disabled={content.length < 1}
-        className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
+        className="mt-2 cursor-pointer rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
       >
         Submit
       </button>

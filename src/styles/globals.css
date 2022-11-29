@@ -6,3 +6,7 @@ body {
   @apply bg-neutral-900 text-neutral-200;
   font-family: "Inter", sans-serif;
 }
+
+#__next {
+  @apply mx-auto md:max-w-3xl;
+}
