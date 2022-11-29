@@ -76,7 +76,7 @@ export const FavoriteBtn = ({
           removeFavorite.isLoading || addFavorite.isLoading
         }
         onClick={setFavorite}
-        className="align-middle text-2xl"
+        className="align-middle text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
       >
         {isFavorite ? <FiHeart className="fill-red-500" /> : <FiHeart />}
       </button>
