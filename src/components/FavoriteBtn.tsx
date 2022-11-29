@@ -55,22 +55,29 @@ export const FavoriteBtn = ({
 
   const setFavorite = () => {
     if (session !== null && session?.user?.id) {
-      if (!isFavorited.length) {
+      if (!isFavorite) {
         addFavorite.mutate({ userId: session.user?.id, postId: postId });
         setIsFavorite(true);
         setNumberOfFavorites((prevAmount) => prevAmount + 1);
       }
-      if (isFavorited[0]) {
-        removeFavorite.mutate({ favoriteId: isFavorited[0].id });
+      if (isFavorite) {
+        removeFavorite.mutate({ userId: session.user?.id, postId: postId });
         setIsFavorite(false);
         setNumberOfFavorites((prevAmount) => prevAmount - 1);
       }
-    } else return null;
+    }
   };
 
   return (
     <>
-      <button onClick={setFavorite} className="align-middle text-2xl">
+      <button
+        disabled={
+          // TODO: FIX STATE BUG WHEN CLICKING TOO FAST
+          removeFavorite.isLoading || addFavorite.isLoading
+        }
+        onClick={setFavorite}
+        className="align-middle text-2xl"
+      >
         {isFavorite ? <FiHeart className="fill-red-500" /> : <FiHeart />}
       </button>
       <span className="ml-1">{numberOfFavorites}</span>

@@ -73,12 +73,13 @@ export const postsRouter = router({
       }
     }),
   removeFavorite: protectedProcedure
-    .input(z.object({ favoriteId: z.string() }))
+    .input(z.object({ postId: z.string(), userId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
-        return await ctx.prisma.favorite.delete({
+        return await ctx.prisma.favorite.deleteMany({
           where: {
-            id: input.favoriteId,
+            postId: { contains: input.postId },
+            userId: { contains: input.userId },
           },
         });
       } catch (error) {

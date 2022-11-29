@@ -73,7 +73,7 @@ model Post {
 model Favorite {
   id              String      @id @default(cuid())
   user            User        @relation(fields: [userId], references: [id])
-  userId          String
+  userId          String      @unique
   post            Post        @relation(fields: [postId], references: [id])
-  postId          String
+  postId          String      @unique
 }
