@@ -14,13 +14,13 @@ export const AllPosts = () => {
   if (isLoading) return <div>Fetching Posts...</div>;
 
   return (
-    <>
+    <div className="mt-4 flex w-full flex-col-reverse break-words">
       {posts?.map((post, index) => {
         return (
           <div
             key={index}
             id={post.id}
-            className="border-b border-zinc-800 p-4 first:border-t md:border-x"
+            className="border-b border-zinc-800 p-4 last:border-t md:border-x"
           >
             <div className="flex justify-between">
               <div className="flex items-center">
@@ -49,6 +49,6 @@ export const AllPosts = () => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };

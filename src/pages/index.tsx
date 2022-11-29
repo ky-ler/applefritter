@@ -43,7 +43,7 @@ const Home: NextPage = () => {
           </button>
         </div>
       )}
-      <div className="mt-4 flex w-full flex-col break-words">
+      <div className="mt-4 flex w-full flex-col-reverse break-words">
         <AllPosts />
       </div>
     </main>

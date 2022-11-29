@@ -13,9 +13,9 @@ export const postsRouter = router({
           createdAt: true,
           favorites: true,
         },
-        orderBy: {
-          createdAt: "desc",
-        },
+        // orderBy: {
+        // createdAt: "desc",
+        // },
       });
     } catch (error) {
       console.error(error);
