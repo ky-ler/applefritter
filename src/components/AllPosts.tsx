@@ -43,9 +43,9 @@ export const AllPosts = () => {
               <DeletePostBtn postId={post.id} postUserId={post.user.id} />
             </div>
             <p className="py-4">{post.content}</p>
-            <div>
+            <div className="items flex">
               <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
-              {post.favorites.length}
+              <span className="ml-1">{post.favorites.length}</span>
             </div>
           </div>
         );
