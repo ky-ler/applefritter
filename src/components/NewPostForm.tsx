@@ -1,5 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import { trpc } from "../utils/trpc";
 
 export const NewPostForm = () => {
@@ -21,24 +22,20 @@ export const NewPostForm = () => {
     },
   });
 
+  const handleSubmit = () => {
+    if (session !== null) {
+      newPost.mutate({
+        authorId: session.user?.id as string,
+        content,
+      });
+    }
+
+    setContent("");
+  };
+
   return (
-    <form
-      className="flex gap-2"
-      onSubmit={(event) => {
-        event.preventDefault();
-
-        if (session !== null) {
-          newPost.mutate({
-            authorId: session.user?.id as string,
-            content,
-          });
-        }
-
-        setContent("");
-      }}
-    >
-      <input
-        type="text"
+    <div className="flex flex-col items-end">
+      <TextareaAutosize
         value={content}
         placeholder="New post..."
         minLength={2}
@@ -49,10 +46,10 @@ export const NewPostForm = () => {
       <button
         type="submit"
         disabled={content.length < 1}
-        className="rounded-md border-2 border-zinc-800 p-2 focus:outline-none"
+        className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
       >
         Submit
       </button>
-    </form>
+    </div>
   );
 };
