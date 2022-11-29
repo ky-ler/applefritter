@@ -45,7 +45,6 @@ export const AllPosts = () => {
             <p className="py-4">{post.content}</p>
             <div className="items flex">
               <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
-              <span className="ml-1">{post.favorites.length}</span>
             </div>
           </div>
         );
