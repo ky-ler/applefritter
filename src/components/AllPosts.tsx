@@ -40,9 +40,7 @@ export const AllPosts = () => {
                   &bull; {dayjs(post.createdAt).fromNow()}{" "}
                 </span>
               </div>
-              <span>
-                <DeletePostBtn postId={post.id} postUserId={post.user.id} />
-              </span>
+              <DeletePostBtn postId={post.id} postUserId={post.user.id} />
             </div>
             <p className="py-4">{post.content}</p>
             <div>

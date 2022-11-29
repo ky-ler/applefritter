@@ -33,7 +33,7 @@ export const DeletePostBtn = ({
       onClick={() => {
         deletePost.mutate({ postId: postId });
       }}
-      className="inline align-middle text-2xl"
+      className="align-middle text-2xl"
     >
       <FiTrash2 />
     </button>
