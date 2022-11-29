@@ -20,18 +20,7 @@ const Home: NextPage = () => {
     <main className="flex max-w-4xl flex-col p-4">
       {session ? (
         <div className="flex justify-around">
-          <div className="flex flex-col items-center justify-end">
-            {session.user?.image && (
-              <>
-                <Image
-                  src={session.user?.image}
-                  alt=""
-                  width={50}
-                  height={50}
-                  className="rounded-full"
-                />
-              </>
-            )}
+          <div className="flex flex-col items-center justify-center">
             <p>Hi {session.user?.name} </p>
             <button
               onClick={() => signOut()}

@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Image from "next/image";
 import Link from "next/link";
 import { trpc } from "../utils/trpc";
 import { DeletePostBtn } from "./DeletePostBtn";
@@ -22,13 +23,24 @@ export const AllPosts = () => {
             className="border-b border-zinc-800 p-4 first:border-t md:border-x"
           >
             <div className="flex justify-between">
+              <div className="flex items-center">
+                {post.user?.image && (
+                  <Image
+                    src={post.user?.image}
+                    alt={`${post.user.name}'s profile picture`}
+                    width={50}
+                    height={50}
+                    className="mr-2 rounded-full"
+                  />
+                )}
+                <span>
+                  <Link className="text-emerald-400" href="#">
+                    @{post.user.name}
+                  </Link>{" "}
+                  &bull; {dayjs(post.createdAt).fromNow()}{" "}
+                </span>
+              </div>
               <span>
-                <Link className="text-emerald-400" href="#">
-                  @{post.user.name}
-                </Link>{" "}
-                &bull; {dayjs(post.createdAt).fromNow()}{" "}
-              </span>
-              <span className="text-right">
                 <DeletePostBtn postId={post.id} postUserId={post.user.id} />
               </span>
             </div>
