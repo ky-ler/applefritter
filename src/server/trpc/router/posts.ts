@@ -44,7 +44,7 @@ export const postsRouter = router({
     .input(z.object({ postId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       try {
-        await ctx.prisma.favorite.delete({
+        await ctx.prisma.favorite.deleteMany({
           where: {
             postId: input.postId,
           },
