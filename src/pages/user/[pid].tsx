@@ -36,22 +36,26 @@ const User = () => {
   return (
     <>
       {userInfo && (
-        <div className="flex items-center justify-center gap-2 border-zinc-800 p-4 md:gap-4 md:border-x-2">
-          {userInfo?.image && (
-            <Image
-              src={userInfo.image}
-              alt={`${userInfo.username}'s profile picture`}
-              width={50}
-              height={50}
-              className="rounded-full"
-            />
-          )}
-          <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
+        <div className="flex items-center justify-around border-b-2 border-zinc-800 p-4 md:space-x-6 md:border-x-2">
+          <div className="flex items-center space-x-3">
+            {userInfo?.image && (
+              <Image
+                src={userInfo.image}
+                alt={`${userInfo.username}'s profile picture`}
+                width={50}
+                height={50}
+                className="rounded-full"
+              />
+            )}
+            <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
+          </div>
           {session && userInfo.id !== session?.user?.id && (
-            <FollowBtn
-              followingId={userInfo.id}
-              followersArray={userInfo.followedBy}
-            />
+            <div className="flex items-center space-x-3">
+              <FollowBtn
+                followingId={userInfo.id}
+                followersArray={userInfo.followedBy}
+              />
+            </div>
           )}
         </div>
       )}
@@ -61,7 +65,7 @@ const User = () => {
             <div
               key={index}
               id={post.id}
-              className="border-b-2 border-zinc-800 p-4 first:border-t-2 md:border-x-2"
+              className="border-b-2 border-zinc-800 p-4 first:border-t-0 md:border-x-2"
             >
               <div className="flex justify-between">
                 <div className="flex items-center">
@@ -90,7 +94,7 @@ const User = () => {
                 <DeletePostBtn postId={post.id} postUserId={post.user.id} />
               </div>
               <p className="py-4">{post.content}</p>
-              <div className="items flex items-center justify-start gap-4">
+              <div className="items flex items-center justify-start space-x-4">
                 <div>
                   <NewReply postId={post.id} replyTo={post.user.username} />
                   <span className="ml-1">{post.replyPost.length}</span>

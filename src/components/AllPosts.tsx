@@ -50,7 +50,7 @@ export const AllPosts = () => {
               <DeletePostBtn postId={post.id} postUserId={post.user.id} />
             </div>
             <p className="py-4">{post.content}</p>
-            <div className="items flex items-center justify-start gap-4">
+            <div className="items flex items-center justify-start space-x-4">
               <div>
                 <NewReply postId={post.id} replyTo={post.user.username} />
                 <span className="ml-1">{post.replyPost.length}</span>

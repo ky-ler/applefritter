@@ -59,7 +59,7 @@ const Username: NextPage = () => {
                 username: data.username,
               });
             })}
-            className="flex flex-col items-center gap-4 pt-8"
+            className="flex flex-col items-center space-x-4 pt-8"
           >
             <div className="flex flex-col items-center justify-center md:flex-row">
               <label htmlFor="username" className="mr-4">

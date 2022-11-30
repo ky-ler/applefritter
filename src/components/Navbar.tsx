@@ -10,8 +10,8 @@ const Navbar = () => {
     <>
       <header className="border-neutral-800 md:block md:w-2/12 md:border-r-2">
         <nav className="fixed bottom-0 flex h-24 w-screen justify-center border-t-2 border-neutral-800 bg-neutral-900 py-8 md:sticky md:bottom-auto md:top-0 md:h-screen md:w-auto md:border-t-0">
-          <div className="flex h-full items-center justify-between gap-6  text-2xl md:flex-col ">
-            <ul className="flex gap-6 md:flex-col">
+          <div className="flex h-full items-center justify-between space-x-3 text-2xl md:flex-col  md:space-x-0 md:space-y-3 ">
+            <ul className="flex space-x-3 md:flex-col md:space-x-0 md:space-y-3">
               <li>
                 <Link href="/">Home</Link>
               </li>
@@ -19,7 +19,7 @@ const Navbar = () => {
                 <Link href={`/user/${session?.user?.username}`}>Profile</Link>
               </li>
             </ul>
-            <ul className="flex gap-6 md:flex-col">
+            <ul className="flex md:flex-col md:space-x-0 md:space-y-3">
               {session ? (
                 <li>
                   <button
