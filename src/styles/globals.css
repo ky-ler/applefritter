@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-neutral-900 text-neutral-200;
+  @apply bg-neutral-900 tracking-tight text-neutral-200;
   font-family: "Inter", sans-serif;
 }
 
