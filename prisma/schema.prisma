@@ -37,6 +37,7 @@ model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
   userId       String
+  username     String?
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -44,6 +45,7 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  username      String?   @unique
   email         String?   @unique
   emailVerified DateTime?
   image         String?

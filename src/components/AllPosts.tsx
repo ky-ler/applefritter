@@ -27,7 +27,7 @@ export const AllPosts = () => {
                 {post.user?.image && (
                   <Image
                     src={post.user?.image}
-                    alt={`${post.user.name}'s profile picture`}
+                    alt={`${post.user.username}'s profile picture`}
                     width={50}
                     height={50}
                     className="mr-2 rounded-full"
@@ -35,7 +35,7 @@ export const AllPosts = () => {
                 )}
                 <span>
                   <Link className="text-emerald-400" href="#">
-                    @{post.user.name}
+                    @{post.user.username}
                   </Link>{" "}
                   &bull; {dayjs(post.createdAt).fromNow()}{" "}
                 </span>
