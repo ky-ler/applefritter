@@ -24,7 +24,6 @@ const usernameSchema = z.object({
 
 const Username: NextPage = () => {
   const { data: session, status } = useSession({ required: true });
-  console.log(session?.user?.email?.split("@")[0]);
   const {
     register,
     handleSubmit,
