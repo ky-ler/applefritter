@@ -1,4 +1,4 @@
-import { Favorite } from "@prisma/client";
+import { type Favorite } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { FiHeart } from "react-icons/fi";
@@ -73,7 +73,7 @@ export const FavoriteBtn = ({
       <button
         disabled={removeFavorite.isLoading || addFavorite.isLoading}
         onClick={setFavorite}
-        className="align-middle text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
+        className=" align-top text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
       >
         {isFavorite ? <FiHeart className="fill-red-500" /> : <FiHeart />}
       </button>
