@@ -13,9 +13,12 @@ const Home: NextPage = () => {
     return <main className="flex flex-col items-center pt-4">Loading...</main>;
 
   return (
-    <div className="flex w-full flex-col-reverse break-words">
-      <AllPosts />
-    </div>
+    <>
+      {session && <NewPostForm />}
+      <div className="flex w-full flex-col-reverse break-words">
+        <AllPosts />
+      </div>
+    </>
   );
 };
 

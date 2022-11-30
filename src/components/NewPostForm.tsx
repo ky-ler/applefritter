@@ -39,7 +39,7 @@ export const NewPostForm = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="mt-4 flex flex-col items-center">
       <TextareaAutosize
         value={content}
         placeholder="New post..."
