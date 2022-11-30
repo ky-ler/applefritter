@@ -12,6 +12,9 @@ export const postsRouter = router({
           content: true,
           createdAt: true,
           favorites: true,
+          originalPostId: true,
+          originalPost: true,
+          replyPost: true,
         },
         // orderBy: {
         // createdAt: "desc",
@@ -24,7 +27,7 @@ export const postsRouter = router({
   createPost: protectedProcedure
     .input(
       z.object({
-        authorId: z.string(),
+        author: z.string(),
         content: z.string(),
       })
     )
@@ -32,8 +35,29 @@ export const postsRouter = router({
       try {
         await ctx.prisma.post.create({
           data: {
-            authorId: input.authorId,
+            author: input.author,
             content: input.content,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+  createReply: protectedProcedure
+    .input(
+      z.object({
+        author: z.string(),
+        content: z.string(),
+        postId: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.post.create({
+          data: {
+            author: input.author,
+            content: input.content,
+            originalPostId: input.postId,
           },
         });
       } catch (error) {

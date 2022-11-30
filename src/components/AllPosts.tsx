@@ -5,6 +5,7 @@ import Link from "next/link";
 import { trpc } from "../utils/trpc";
 import { DeletePostBtn } from "./DeletePostBtn";
 import { FavoriteBtn } from "./FavoriteBtn";
+import { NewReply } from "./NewReply";
 
 dayjs.extend(relativeTime);
 
@@ -37,14 +38,23 @@ export const AllPosts = () => {
                   <Link className="text-emerald-400" href="#">
                     @{post.user.username}
                   </Link>{" "}
+                  {post.originalPost && (
+                    <>&bull; Replying to {post.originalPost.author}</>
+                  )}{" "}
                   &bull; {dayjs(post.createdAt).fromNow()}{" "}
                 </span>
               </div>
               <DeletePostBtn postId={post.id} postUserId={post.user.id} />
             </div>
             <p className="py-4">{post.content}</p>
-            <div className="items flex">
-              <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
+            <div className="items flex items-center justify-start gap-4">
+              <div>
+                <NewReply postId={post.id} replyTo={post.user.username} />
+                <span className="ml-1">{post.replyPost.length}</span>
+              </div>
+              <div>
+                <FavoriteBtn postId={post.id} postFavorites={post.favorites} />{" "}
+              </div>
             </div>
           </div>
         );

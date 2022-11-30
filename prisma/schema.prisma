@@ -43,16 +43,18 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String         @id @default(cuid())
   name          String?
-  username      String?   @unique
-  email         String?   @unique
+  username      String?        @unique
+  email         String?        @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
   posts         Post[]
   favorites     Favorite[]
+  following     Follows[]      @relation("follower")
+  followedBy    Follows[]      @relation("following")
 }
 
 model VerificationToken {
@@ -64,12 +66,16 @@ model VerificationToken {
 }
 
 model Post {
-  id          String      @id @default(cuid())
-  user        User        @relation(fields: [authorId], references: [id])
-  authorId    String
-  content     String      @db.VarChar(280)
-  createdAt   DateTime    @default(now())
-  favorites   Favorite[]
+  id                String      @id @default(cuid())
+  user              User        @relation(fields: [author], references: [username])
+  author            String
+  content           String      @db.VarChar(280)
+  createdAt         DateTime    @default(now())
+  favorites         Favorite[]
+  // One-to-many self relations
+  originalPostId    String?
+  originalPost      Post?       @relation("PostReplies", fields: [originalPostId], references: [id])
+  replyPost         Post[]      @relation("PostReplies")
 }
 
 model Favorite {
@@ -78,4 +84,13 @@ model Favorite {
   userId          String
   post            Post        @relation(fields: [postId], references: [id])
   postId          String
+}
+
+model Follows {
+  follower        User      @relation("follower", fields: [followerId], references: [id])
+  followerId      String
+  following       User      @relation("following", fields: [followingId], references: [id])
+  followingId     String
+
+  @@id([followerId, followingId])
 }

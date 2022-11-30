@@ -30,7 +30,7 @@ export const NewPostForm = () => {
   const handleSubmit = () => {
     if (session !== null) {
       newPost.mutate({
-        authorId: session.user?.id as string,
+        author: session.user?.username as string,
         content,
       });
     }
