@@ -1,28 +1,43 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import isAlphanumeric from "validator/lib/isAlphanumeric";
+import { z } from "zod";
 
 import { trpc } from "../utils/trpc";
 
-const Register: NextPage = () => {
+const usernameSchema = z.object({
+  username: z
+    .string()
+    .min(2, { message: "Username must be between 2 and 32 characters long." })
+    .max(32, {
+      message: "Username must be between 2 and 32 characters long.",
+    })
+    // TODO: First character must be a letter
+    .refine((val) => isAlphanumeric(val, "en-US" /*, { ignore: "_" } */), {
+      message: "Username can only contain letters, numbers, and underscores.",
+    }),
+});
+
+const Username: NextPage = () => {
   const { data: session, status } = useSession({ required: true });
-  const [username, setUsername] = useState("");
+  console.log(session?.user?.email?.split("@")[0]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isDirty },
+  } = useForm({
+    resolver: zodResolver(usernameSchema),
+  });
+
   const router = useRouter();
 
   const createUsername = trpc.user.changeName.useMutation();
 
-  const handleSubmit = () => {
-    if (session !== null) {
-      createUsername.mutate({
-        userId: session.user?.id as string,
-        username,
-      });
-    }
-  };
   if (createUsername.isSuccess && session?.user) {
-    session.user.username = username;
     // Workaround to add username to session
     router.reload();
     // router.push("/");
@@ -32,39 +47,46 @@ const Register: NextPage = () => {
     return <main className="flex flex-col items-center pt-4">Loading...</main>;
 
   return (
-    <main className="flex max-w-4xl flex-col items-center p-4">
+    <main className="flex min-h-screen max-w-4xl flex-col items-center justify-center p-4">
       {!session.user?.username ? (
         <>
-          <h2>Add a Username</h2>
-          <div className="flex flex-col items-center gap-4 pt-4">
-            {createUsername.isError ? (
+          <h2 className="text-semibold text-xl">
+            Create a username to continue
+          </h2>
+          <form
+            onSubmit={handleSubmit((data) => {
+              createUsername.mutate({
+                userId: session.user?.id as string,
+                username: data.username,
+              });
+            })}
+            className="flex flex-col items-center gap-4 pt-8"
+          >
+            <div className="flex flex-col items-center justify-center md:flex-row">
+              <label htmlFor="username" className="mr-4">
+                Username:
+              </label>
               <input
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                minLength={2}
-                maxLength={32}
-                className="rounded-md border-2 border-red-500 bg-neutral-900 px-4 py-2 ring-0 transition-all focus:outline-none"
+                {...register("username")}
+                aria-invalid={errors.username ? "true" : "false"}
+                className={
+                  errors.username
+                    ? `rounded-md border-2 border-red-500 bg-neutral-900 px-4 py-2 tracking-tight transition-all  focus:outline-0 active:outline-0`
+                    : `rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 tracking-tight transition-all  focus:outline-0 active:outline-0`
+                }
               />
-            ) : (
-              <input
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
-                minLength={2}
-                maxLength={32}
-                className="rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:outline-0  active:outline-0"
-              />
+            </div>
+            {errors.username && (
+              <p role="alert">{"" + errors.username.message}</p>
             )}
             <button
-              onClick={() => handleSubmit()}
-              disabled={username.length < 2 || createUsername.isLoading}
+              disabled={!isDirty || createUsername.isLoading}
               className="mt-2 flex cursor-pointer items-center justify-center rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800 disabled:cursor-not-allowed disabled:hover:border-zinc-800 disabled:active:bg-transparent"
             >
               Submit
             </button>
             {createUsername.isError && <span>Name is already in use</span>}
-          </div>
+          </form>
         </>
       ) : (
         <Link
@@ -78,4 +100,4 @@ const Register: NextPage = () => {
   );
 };
 
-export default Register;
+export default Username;
