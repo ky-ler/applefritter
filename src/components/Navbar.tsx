@@ -1,4 +1,4 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { Login } from "./Login";
 
@@ -6,7 +6,6 @@ const Navbar = () => {
   const { data: session } = useSession();
 
   return (
-    // <header className="max-w-1/3 flex min-h-screen w-1/3 flex-col items-end justify-center">
     <>
       <header className="border-neutral-800 md:block md:w-2/12 md:border-r-2">
         <nav className="fixed bottom-0 flex h-24 w-screen justify-center border-t-2 border-neutral-800 bg-neutral-900 py-8 md:sticky md:bottom-auto md:top-0 md:h-screen md:w-auto md:border-t-0">
