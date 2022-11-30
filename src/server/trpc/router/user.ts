@@ -12,8 +12,11 @@ export const userRouter = router({
             username: input.username,
           },
           select: {
+            id: true,
             username: true,
             image: true,
+            following: true,
+            followedBy: true,
           },
           // orderBy: {
           // createdAt: "desc",
@@ -48,6 +51,34 @@ export const userRouter = router({
             throw new Error("Name already in use");
           }
         }
+        console.error(error);
+      }
+    }),
+  followUser: protectedProcedure
+    .input(z.object({ followerId: z.string(), followingId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.follows.create({
+          data: {
+            followerId: input.followerId,
+            followingId: input.followingId,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
+  unfollowUser: protectedProcedure
+    .input(z.object({ followerId: z.string(), followingId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.follows.deleteMany({
+          where: {
+            followerId: { contains: input.followerId },
+            followingId: { contains: input.followingId },
+          },
+        });
+      } catch (error) {
         console.error(error);
       }
     }),

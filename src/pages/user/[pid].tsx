@@ -1,16 +1,19 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { DeletePostBtn } from "../../components/DeletePostBtn";
 import { FavoriteBtn } from "../../components/FavoriteBtn";
+import { FollowBtn } from "../../components/FollowBtn";
 import { NewReply } from "../../components/NewReply";
 import { trpc } from "../../utils/trpc";
 
 dayjs.extend(relativeTime);
 
 const User = () => {
+  const { data: session } = useSession();
   const router = useRouter();
   const { pid } = router.query;
 
@@ -32,18 +35,26 @@ const User = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center gap-2 border-zinc-800 p-4 md:gap-4 md:border-x-2">
-        {userInfo?.image && (
-          <Image
-            src={userInfo.image}
-            alt={`${userInfo.username}'s profile picture`}
-            width={50}
-            height={50}
-            className="rounded-full"
-          />
-        )}
-        <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
-      </div>
+      {userInfo && (
+        <div className="flex items-center justify-center gap-2 border-zinc-800 p-4 md:gap-4 md:border-x-2">
+          {userInfo?.image && (
+            <Image
+              src={userInfo.image}
+              alt={`${userInfo.username}'s profile picture`}
+              width={50}
+              height={50}
+              className="rounded-full"
+            />
+          )}
+          <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
+          {session && userInfo.id !== session?.user?.id && (
+            <FollowBtn
+              followingId={userInfo.id}
+              followersArray={userInfo.followedBy}
+            />
+          )}
+        </div>
+      )}
       <div className="flex w-full flex-col break-words">
         {posts?.map((post, index) => {
           return (
