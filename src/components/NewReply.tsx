@@ -47,7 +47,10 @@ export const NewReply = ({
     <>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="align-top text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0">
+          <button
+            disabled={!session}
+            className="align-top text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
+          >
             <BiMessageRounded />
           </button>
         </Dialog.Trigger>

@@ -12,7 +12,10 @@ dayjs.extend(relativeTime);
 export const AllPosts = () => {
   const { data: posts, isLoading } = trpc.posts.getAll.useQuery();
 
-  if (isLoading) return <div>Fetching Posts...</div>;
+  if (isLoading)
+    return (
+      <div className="flex flex-col items-center pt-4">Fetching Posts...</div>
+    );
 
   return (
     <div className="mt-4 flex w-full flex-col-reverse break-words">

@@ -71,7 +71,7 @@ export const FavoriteBtn = ({
   return (
     <>
       <button
-        disabled={removeFavorite.isLoading || addFavorite.isLoading}
+        disabled={removeFavorite.isLoading || addFavorite.isLoading || !session}
         onClick={setFavorite}
         className=" align-top text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
       >

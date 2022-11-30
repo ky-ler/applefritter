@@ -16,7 +16,7 @@ export const Login = () => {
           <Dialog.Content className="fixed top-1/2 left-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-y-1/2 -translate-x-1/2 rounded-md border-2 border-zinc-800 bg-neutral-900 p-6">
             <Dialog.Title className="mb-4 font-semibold">Log In</Dialog.Title>
 
-            <div className="flex flex-col justify-around space-x-4 md:flex-row md:items-center md:space-x-0">
+            <div className="flex flex-col justify-around space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-0">
               <Dialog.Close asChild>
                 <button
                   onClick={() => signIn("discord")}
