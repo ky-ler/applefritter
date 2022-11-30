@@ -43,10 +43,14 @@ const Username: NextPage = () => {
   }
 
   if (status === "loading")
-    return <main className="flex flex-col items-center pt-4">Loading...</main>;
+    return (
+      <div className="flex flex-col items-center justify-center pt-4">
+        Loading...
+      </div>
+    );
 
   return (
-    <main className="flex min-h-screen max-w-4xl flex-col items-center justify-center p-4">
+    <div className="flex h-[calc(100vh-96px)] flex-col items-center justify-center p-4 text-center md:max-w-4xl">
       {!session.user?.username ? (
         <>
           <h2 className="text-semibold text-xl">
@@ -59,19 +63,19 @@ const Username: NextPage = () => {
                 username: data.username,
               });
             })}
-            className="flex flex-col items-center space-x-4 pt-8"
+            className="flex flex-col items-center space-y-4 pt-8"
           >
             <div className="flex flex-col items-center justify-center md:flex-row">
-              <label htmlFor="username" className="mr-4">
-                Username:
+              <label htmlFor="username" className="mb-2 md:mb-0 md:mr-4">
+                Username
               </label>
               <input
                 {...register("username")}
                 aria-invalid={errors.username ? "true" : "false"}
                 className={
                   errors.username
-                    ? `rounded-md border-2 border-red-500 bg-neutral-900 px-4 py-2 tracking-tight transition-all  focus:outline-0 active:outline-0`
-                    : `rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 tracking-tight transition-all  focus:outline-0 active:outline-0`
+                    ? `rounded-md border-2 border-red-500 bg-neutral-900 px-4 py-2 tracking-tight transition-all focus:outline-0 active:outline-0`
+                    : `rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 tracking-tight transition-all focus:outline-0 active:outline-0`
                 }
               />
             </div>
@@ -90,12 +94,12 @@ const Username: NextPage = () => {
       ) : (
         <Link
           href="/"
-          className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
+          className="rounded-md border-2 border-emerald-500 px-8 py-4 text-2xl transition-colors hover:border-emerald-600 focus:outline-none active:border-emerald-500 active:bg-neutral-800"
         >
-          Home
+          Continue
         </Link>
       )}
-    </main>
+    </div>
   );
 };
 

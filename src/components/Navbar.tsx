@@ -15,9 +15,11 @@ const Navbar = () => {
               <li>
                 <Link href="/">Home</Link>
               </li>
-              <li>
-                <Link href={`/user/${session?.user?.username}`}>Profile</Link>
-              </li>
+              {session?.user?.username && (
+                <li>
+                  <Link href={`/user/${session?.user?.username}`}>Profile</Link>
+                </li>
+              )}
             </ul>
             <ul className="flex md:flex-col md:space-x-0 md:space-y-3">
               {session ? (

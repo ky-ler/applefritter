@@ -28,9 +28,9 @@ const User = () => {
   console.log(userInfo);
   if (isLoading)
     return (
-      <main className="flex h-screen flex-col items-center justify-center pt-4">
+      <div className="flex h-screen flex-col items-center justify-center pt-4">
         Loading...
-      </main>
+      </div>
     );
 
   return (
