@@ -71,10 +71,7 @@ export const FavoriteBtn = ({
   return (
     <>
       <button
-        disabled={
-          // TODO: FIX STATE BUG WHEN CLICKING TOO FAST
-          removeFavorite.isLoading || addFavorite.isLoading
-        }
+        disabled={removeFavorite.isLoading || addFavorite.isLoading}
         onClick={setFavorite}
         className="align-middle text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
       >
