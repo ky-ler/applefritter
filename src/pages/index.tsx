@@ -13,18 +13,9 @@ const Home: NextPage = () => {
     return <main className="flex flex-col items-center pt-4">Loading...</main>;
 
   return (
-    <main className="flex max-w-4xl flex-col p-4">
+    <>
       {session ? (
         <div className="flex justify-around">
-          <div className="flex flex-col items-center justify-center">
-            <p>Hi {session.user?.username} </p>
-            <button
-              onClick={() => signOut()}
-              className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
-            >
-              Logout
-            </button>
-          </div>
           <div className="pt-4">
             <NewPostForm />
           </div>
@@ -48,7 +39,7 @@ const Home: NextPage = () => {
       <div className="mt-4 flex w-full flex-col-reverse break-words">
         <AllPosts />
       </div>
-    </main>
+    </>
   );
 };
 

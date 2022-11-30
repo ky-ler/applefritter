@@ -53,7 +53,7 @@ export const NewReply = ({
         </Dialog.Trigger>
         <Dialog.Portal>
           <Dialog.Overlay className="fixed inset-0 backdrop-blur-sm" />
-          <Dialog.Content className="fixed top-1/2 left-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-y-1/2 -translate-x-1/2 rounded-md border-2 border-zinc-700 bg-neutral-900 p-6">
+          <Dialog.Content className="fixed top-1/2 left-1/2 max-h-[85vh] w-[90vw] max-w-md -translate-y-1/2 -translate-x-1/2 rounded-md border-2 border-zinc-800 bg-neutral-900 p-6">
             <Dialog.Title className="mb-4 font-semibold">
               {replyTo ? `Reply to ${replyTo}` : "New Reply"}
             </Dialog.Title>

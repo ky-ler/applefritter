@@ -21,7 +21,7 @@ export const AllPosts = () => {
           <div
             key={index}
             id={post.id}
-            className="border-b border-zinc-800 p-4 last:border-t md:border-x"
+            className="border-b-2 border-zinc-800 p-4 last:border-t-2 md:border-x-2"
           >
             <div className="flex justify-between">
               <div className="flex items-center">
@@ -35,7 +35,10 @@ export const AllPosts = () => {
                   />
                 )}
                 <span>
-                  <Link className="text-emerald-400" href="#">
+                  <Link
+                    className="text-emerald-400"
+                    href={`/user/${post.user.username}`}
+                  >
                     @{post.user.username}
                   </Link>{" "}
                   {post.originalPost && (

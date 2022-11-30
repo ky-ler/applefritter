@@ -8,5 +8,6 @@ body {
 }
 
 #__next {
-  @apply mx-auto md:max-w-3xl;
+  /* @apply mx-auto md:max-w-3xl; */
+  @apply flex min-h-screen w-full flex-col justify-around md:flex-row;
 }

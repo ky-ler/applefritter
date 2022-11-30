@@ -24,6 +24,34 @@ export const postsRouter = router({
       console.error(error);
     }
   }),
+  getAllByUser: publicProcedure
+    .input(z.object({ username: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        return await ctx.prisma.post.findMany({
+          where: {
+            user: {
+              username: input.username,
+            },
+          },
+          select: {
+            user: true,
+            id: true,
+            content: true,
+            createdAt: true,
+            favorites: true,
+            originalPostId: true,
+            originalPost: true,
+            replyPost: true,
+          },
+          // orderBy: {
+          // createdAt: "desc",
+          // },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
   createPost: protectedProcedure
     .input(
       z.object({
