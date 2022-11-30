@@ -13,33 +13,9 @@ const Home: NextPage = () => {
     return <main className="flex flex-col items-center pt-4">Loading...</main>;
 
   return (
-    <>
-      {session ? (
-        <div className="flex justify-around">
-          <div className="pt-4">
-            <NewPostForm />
-          </div>
-        </div>
-      ) : (
-        <div className="flex items-center justify-center">
-          <button
-            onClick={() => signIn("discord")}
-            className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
-          >
-            Login with Discord
-          </button>
-          <button
-            onClick={() => signIn("google")}
-            className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800"
-          >
-            Login with Google
-          </button>
-        </div>
-      )}
-      <div className="mt-4 flex w-full flex-col-reverse break-words">
-        <AllPosts />
-      </div>
-    </>
+    <div className="flex w-full flex-col-reverse break-words">
+      <AllPosts />
+    </div>
   );
 };
 
