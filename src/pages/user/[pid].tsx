@@ -25,7 +25,6 @@ const User = () => {
     username: "" + pid,
   });
 
-  console.log(userInfo);
   if (isLoading)
     return (
       <div className="flex h-screen flex-col items-center justify-center pt-4">
@@ -36,8 +35,8 @@ const User = () => {
   return (
     <>
       {userInfo && (
-        <div className="flex items-center justify-around border-b-2 border-zinc-800 p-4 md:space-x-6 md:border-x-2">
-          <div className="flex items-center space-x-3">
+        <div className="flex items-center justify-around border-b-2 border-zinc-800 p-4 md:border-x-2">
+          <div className="flex items-center space-x-3 px-4">
             {userInfo?.image && (
               <Image
                 src={userInfo.image}
@@ -49,14 +48,13 @@ const User = () => {
             )}
             <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
           </div>
-          {session && userInfo.id !== session?.user?.id && (
-            <div className="flex items-center space-x-3">
-              <FollowBtn
-                followingId={userInfo.id}
-                followersArray={userInfo.followedBy}
-              />
-            </div>
-          )}
+
+          <div className="flex flex-col items-center justify-center px-4">
+            <FollowBtn
+              followingId={userInfo.id}
+              followersArray={userInfo.followedBy}
+            />
+          </div>
         </div>
       )}
       <div className="flex w-full flex-col break-words">

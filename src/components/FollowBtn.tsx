@@ -1,7 +1,7 @@
 import type { Follows } from "@prisma/client";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { FiHeart } from "react-icons/fi";
+import { FiUserMinus, FiUserPlus } from "react-icons/fi";
 import { trpc } from "../utils/trpc";
 
 export const FollowBtn = ({
@@ -25,10 +25,9 @@ export const FollowBtn = ({
   );
 
   const follow = trpc.user.followUser.useMutation();
-
   const unfollow = trpc.user.unfollowUser.useMutation();
 
-  const setFavorite = () => {
+  const handleClick = () => {
     if (session !== null && session?.user?.id) {
       if (!isFollowing) {
         follow.mutate({
@@ -51,14 +50,21 @@ export const FollowBtn = ({
 
   return (
     <>
-      <button
-        disabled={unfollow.isLoading || follow.isLoading}
-        onClick={setFavorite}
-        className=" align-top text-2xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
-      >
-        {isFollower ? <FiHeart className="fill-red-500" /> : <FiHeart />}
-      </button>
-      <span className="ml-1">{numberOfFollowers}</span>
+      {session?.user?.id !== followingId && (
+        <div>
+          <button
+            disabled={unfollow.isLoading || follow.isLoading}
+            onClick={handleClick}
+            className="align-top text-3xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
+          >
+            {isFollowing ? <FiUserMinus /> : <FiUserPlus />}
+          </button>
+        </div>
+      )}
+      <div className="flex flex-col">
+        {numberOfFollowers} Follower
+        {numberOfFollowers === 1 ? "" : "s"}
+      </div>
     </>
   );
 };
