@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { trpc } from "../utils/trpc";
@@ -7,6 +8,10 @@ export const NewPostForm = () => {
   const { data: session } = useSession();
   const [content, setContent] = useState("");
   const utils = trpc.useContext();
+
+  const router = useRouter();
+
+  if (!session?.user?.username) router.push("/username");
 
   const newPost = trpc.posts.createPost.useMutation({
     onMutate: () => {
