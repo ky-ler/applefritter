@@ -18,7 +18,7 @@ const usernameSchema = z.object({
     })
     // TODO: First character must be a letter
     .refine((val) => isAlphanumeric(val, "en-US" /*, { ignore: "_" } */), {
-      message: "Username can only contain letters, numbers, and underscores.",
+      message: "Username can only contain letters and numbers.",
     }),
 });
 
