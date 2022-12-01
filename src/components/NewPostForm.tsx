@@ -13,17 +13,29 @@ export const NewPostForm = () => {
 
   if (!session?.user?.username) router.push("/username");
 
+  const uid = session?.user?.id as string;
+
   const newPost = trpc.posts.createPost.useMutation({
     onMutate: () => {
       utils.posts.getAll.cancel();
+      utils.posts.getFollowingPosts.cancel();
+      utils.posts.getAllByUser.cancel();
       const optimisticUpdate = utils.posts.getAll.getData();
+      const optimisticUpdateTwo = utils.posts.getFollowingPosts.getData();
 
       if (optimisticUpdate) {
         utils.posts.getAll.setData(undefined, optimisticUpdate);
       }
+      if (optimisticUpdateTwo) {
+        utils.posts.getFollowingPosts.setData(
+          { userId: uid },
+          optimisticUpdateTwo
+        );
+      }
     },
     onSettled: () => {
       utils.posts.getAll.invalidate();
+      utils.posts.getFollowingPosts.invalidate();
     },
   });
 
