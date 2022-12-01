@@ -15,14 +15,23 @@ export const DeletePostBtn = ({
   const deletePost = trpc.posts.deletePost.useMutation({
     onMutate: () => {
       utils.posts.getAll.cancel();
+      utils.posts.getFollowingPosts.cancel();
       const optimisticUpdate = utils.posts.getAll.getData();
+      const optimisticUpdateTwo = utils.posts.getFollowingPosts.getData();
 
       if (optimisticUpdate) {
         utils.posts.getAll.setData(undefined, optimisticUpdate);
       }
+      if (optimisticUpdateTwo) {
+        utils.posts.getFollowingPosts.setData(
+          { userId: postUserId },
+          optimisticUpdateTwo
+        );
+      }
     },
     onSettled: () => {
       utils.posts.getAll.invalidate();
+      utils.posts.getFollowingPosts.invalidate();
     },
   });
 
