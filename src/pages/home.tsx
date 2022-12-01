@@ -34,10 +34,10 @@ const Home: NextPage = () => {
             <span className="font-semibold text-red-500">
               Error fetching posts.
             </span>
-            <h3>Possible Causes:</h3>
+            <h3 className="mt-4">Possible Causes:</h3>
             <ul className="list-outside list-disc">
               <li>You aren&apos;t following anyone</li>
-              <li>Users you follow have not posted</li>
+              <li>You and/or users you follow have not posted</li>
             </ul>
           </div>
         )}
