@@ -15,8 +15,6 @@ const Home: NextPage = () => {
 
   const router = useRouter();
 
-  console.log(status);
-
   if (status === "loading")
     return <div className="flex flex-col items-center pt-4">Loading...</div>;
 
