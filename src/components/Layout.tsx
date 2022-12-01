@@ -1,3 +1,4 @@
+import Head from "next/head";
 import type { ReactElement } from "react";
 import Navbar from "./Navbar";
 

@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { FiTrash2 } from "react-icons/fi";
+import { FiTrash } from "react-icons/fi";
 import { trpc } from "../utils/trpc";
 
 export const DeletePostBtn = ({
@@ -34,13 +34,13 @@ export const DeletePostBtn = ({
         onClick={() => {
           deletePost.mutate({ postId: postId });
         }}
-        className="align-middle text-2xl"
+        className="flex items-center align-top text-2xl"
       >
         {deletePost.isLoading ? (
           <div>
             <svg
               aria-hidden="true"
-              className="h-6 w-6 animate-spin fill-emerald-400 text-neutral-600"
+              className="h-5 w-5 animate-spin fill-emerald-400 align-bottom text-neutral-600"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ export const DeletePostBtn = ({
             <span className="sr-only">Loading...</span>
           </div>
         ) : (
-          <FiTrash2 />
+          <FiTrash />
         )}
       </button>
     </>

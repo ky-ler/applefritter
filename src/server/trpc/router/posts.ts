@@ -24,6 +24,38 @@ export const postsRouter = router({
       console.error(error);
     }
   }),
+  getFollowingPosts: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const following = await ctx.prisma.follows.findMany({
+          where: { followerId: input.userId },
+        });
+        const ids = following.map((user) => user.followingId);
+        return await ctx.prisma.post.findMany({
+          where: {
+            user: {
+              id: { in: ids },
+            },
+          },
+          select: {
+            user: true,
+            id: true,
+            content: true,
+            createdAt: true,
+            favorites: true,
+            originalPostId: true,
+            originalPost: true,
+            replyPost: true,
+          },
+          orderBy: {
+            createdAt: "asc",
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }),
   getAllByUser: publicProcedure
     .input(z.object({ username: z.string() }))
     .query(async ({ ctx, input }) => {
