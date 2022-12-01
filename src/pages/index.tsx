@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { NewPostForm } from "../components/NewPostForm";
 import { PostComponent } from "../components/PostComponent";
+import Layout from "../layouts/Layout";
 import { trpc } from "../utils/trpc";
 
 const AllPostsFeed: NextPage = () => {
@@ -17,7 +18,7 @@ const AllPostsFeed: NextPage = () => {
     );
 
   return (
-    <>
+    <Layout>
       {session && <NewPostForm />}
       <div className="flex w-full flex-col-reverse break-words">
         <div className="flex w-full flex-col-reverse break-words">
@@ -26,7 +27,7 @@ const AllPostsFeed: NextPage = () => {
           })}
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

@@ -1,8 +1,10 @@
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import React from "react";
 import { NewPostForm } from "../components/NewPostForm";
 import { PostComponent } from "../components/PostComponent";
+import Layout from "../layouts/Layout";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
@@ -18,7 +20,7 @@ const Home: NextPage = () => {
   if (status === "loading")
     return <div className="flex flex-col items-center pt-4">Loading...</div>;
 
-  if (status === "unauthenticated") router.push("/");
+  if (status === "unauthenticated") router.push("/login");
 
   if (isLoading)
     return (
@@ -26,7 +28,7 @@ const Home: NextPage = () => {
     );
 
   return (
-    <>
+    <Layout>
       {session && <NewPostForm />}
       <div className="flex w-full flex-col-reverse break-words">
         {!isLoading && !posts?.length && (
@@ -48,7 +50,7 @@ const Home: NextPage = () => {
             })}
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

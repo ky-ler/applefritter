@@ -1,8 +1,11 @@
 import Head from "next/head";
-import type { ReactElement } from "react";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
-const Layout = ({ children }: { children: ReactElement }) => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <Navbar />
@@ -14,4 +17,5 @@ const Layout = ({ children }: { children: ReactElement }) => {
     </>
   );
 };
+
 export default Layout;

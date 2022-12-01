@@ -1,4 +1,4 @@
-import NextAuth, { Session, User, type NextAuthOptions } from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 import GoogleProvider from "next-auth/providers/google";
 // Prisma adapter for NextAuth, optional and can be removed
@@ -35,6 +35,8 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
+    signIn: "/home",
+    signOut: "/",
     newUser: "/username", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 };

@@ -17,22 +17,18 @@ export const Login = () => {
             <Dialog.Title className="mb-4 font-semibold">Log In</Dialog.Title>
 
             <div className="flex flex-col justify-around space-y-4 md:flex-row md:items-center md:space-y-0 md:space-x-0">
-              <Dialog.Close asChild>
-                <button
-                  onClick={() => signIn("discord")}
-                  className="rounded-md border-2 border-zinc-800 p-6 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800 md:p-2"
-                >
-                  Login with Discord
-                </button>
-              </Dialog.Close>
-              <Dialog.Close asChild>
-                <button
-                  onClick={() => signIn("google")}
-                  className="rounded-md border-2 border-zinc-800 p-6 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800 md:p-2"
-                >
-                  Login with Google
-                </button>
-              </Dialog.Close>
+              <button
+                onClick={() => signIn("discord")}
+                className="rounded-md border-2 border-zinc-800 p-6 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800 md:p-2"
+              >
+                Login with Discord
+              </button>
+              <button
+                onClick={() => signIn("google")}
+                className="rounded-md border-2 border-zinc-800 p-6 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800 md:p-2"
+              >
+                Login with Google
+              </button>
             </div>
             <Dialog.Close asChild>
               <button

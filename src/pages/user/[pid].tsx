@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { FollowBtn } from "../../components/FollowBtn";
 import { PostComponent } from "../../components/PostComponent";
+import Layout from "../../layouts/Layout";
 import { trpc } from "../../utils/trpc";
 
 const User = () => {
@@ -24,7 +25,7 @@ const User = () => {
     );
 
   return (
-    <>
+    <Layout>
       {userInfo && (
         <div className="flex items-center justify-around border-b-2 border-zinc-800 p-4 md:border-x-2">
           <div className="flex items-center space-x-3 px-4">
@@ -53,7 +54,7 @@ const User = () => {
           return <PostComponent key={index} post={post} />;
         })}
       </div>
-    </>
+    </Layout>
   );
 };
 
