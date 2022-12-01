@@ -34,9 +34,18 @@ export const postsRouter = router({
         const ids = following.map((user) => user.followingId);
         return await ctx.prisma.post.findMany({
           where: {
-            user: {
-              id: { in: ids },
-            },
+            OR: [
+              {
+                user: {
+                  id: input.userId,
+                },
+              },
+              {
+                user: {
+                  id: { in: ids },
+                },
+              },
+            ],
           },
           select: {
             user: true,
