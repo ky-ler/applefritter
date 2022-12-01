@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { FollowBtn } from "../../components/FollowBtn";
-import { PostComponent } from "../../components/Post";
+import { PostComponent } from "../../components/PostComponent";
 import { trpc } from "../../utils/trpc";
 
 const User = () => {

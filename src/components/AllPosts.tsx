@@ -1,5 +1,5 @@
 import { trpc } from "../utils/trpc";
-import { PostComponent } from "./Post";
+import { PostComponent } from "./PostComponent";
 
 export const AllPosts = () => {
   const { data: posts, isLoading } = trpc.posts.getAll.useQuery();
@@ -10,7 +10,7 @@ export const AllPosts = () => {
     );
 
   return (
-    <div className="mt-4 flex w-full flex-col-reverse break-words">
+    <div className="flex w-full flex-col-reverse break-words">
       {posts?.map((post, index) => {
         return <PostComponent key={index} post={post} />;
       })}
