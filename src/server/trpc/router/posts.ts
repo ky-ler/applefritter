@@ -17,7 +17,7 @@ export const postsRouter = router({
           replyPost: true,
         },
         // orderBy: {
-        // createdAt: "desc",
+        //   createdAt: "desc",
         // },
       });
     } catch (error) {
@@ -44,9 +44,9 @@ export const postsRouter = router({
             originalPost: true,
             replyPost: true,
           },
-          // orderBy: {
-          // createdAt: "desc",
-          // },
+          orderBy: {
+            createdAt: "asc",
+          },
         });
       } catch (error) {
         console.error(error);
