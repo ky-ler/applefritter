@@ -55,7 +55,7 @@ export const FollowBtn = ({
           <button
             disabled={unfollow.isLoading || follow.isLoading}
             onClick={handleClick}
-            className="align-top text-3xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
+            className="flex align-top text-3xl duration-300 active:-translate-y-1 active:transition-transform disabled:active:translate-y-0"
           >
             {isFollowing ? <FiUserMinus /> : <FiUserPlus />}
           </button>

@@ -25,13 +25,11 @@ const Home: NextPage = () => {
       <div className="flex flex-col items-center pt-4">Fetching Posts...</div>
     );
 
-  console.log(posts);
-
   return (
     <>
       {session && <NewPostForm />}
       <div className="flex w-full flex-col-reverse break-words">
-        {!posts?.length && (
+        {!isLoading && !posts?.length && (
           <div className="flex flex-col items-center pt-4 text-lg">
             <span className="font-semibold text-red-500">
               Error fetching posts.
