@@ -39,9 +39,9 @@ const Navbar = () => {
                   </li>
                 ) : (
                   <li>
-                    <button className="md:hidden">
-                      <Link href="/login">Log In</Link>
-                    </button>
+                    <Link href="/login">
+                      <button className="md:hidden">Log In</button>
+                    </Link>
                   </li>
                 )}
               </>
@@ -58,9 +58,11 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li>
-                  <button className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800">
-                    <Link href="/login">Log In</Link>
-                  </button>
+                  <Link href="/login">
+                    <button className="rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800">
+                      Log In
+                    </button>
+                  </Link>
                 </li>
               )}
             </ul>
