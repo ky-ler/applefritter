@@ -48,12 +48,16 @@ const PostComponent = ({ post }: { post: PostWithUser }) => {
       </div>
       <p className="py-4">
         {post.originalPost && (
-          <Link
-            href={`/user/${post.originalPost?.author}`}
-            className="text-emerald-400"
-          >
-            @{post.originalPost.author}
-          </Link>
+          <>
+            Replying to{" "}
+            <Link
+              href={`/user/${post.originalPost?.author}`}
+              className="text-emerald-400"
+            >
+              @{post.originalPost.author}
+            </Link>
+            {": "}
+          </>
         )}{" "}
         {post.content}
       </p>
