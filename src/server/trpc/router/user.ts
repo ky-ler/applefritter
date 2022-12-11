@@ -17,6 +17,7 @@ export const userRouter = router({
             image: true,
             following: true,
             followedBy: true,
+            about: true,
           },
           // orderBy: {
           // createdAt: "desc",
@@ -33,6 +34,7 @@ export const userRouter = router({
         username: z.string().min(2, {
           message: "Username must be between 2 and 32 characters long",
         }),
+        about: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -43,6 +45,7 @@ export const userRouter = router({
           },
           data: {
             username: input.username,
+            about: input.about,
           },
         });
       } catch (error) {

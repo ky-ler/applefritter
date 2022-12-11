@@ -27,26 +27,29 @@ const User = () => {
   return (
     <Layout>
       {userInfo && (
-        <div className="flex items-center justify-around border-b-2 border-zinc-800 p-4 md:border-x-2">
-          <div className="flex items-center space-x-3 px-4">
-            {userInfo?.image && (
-              <Image
-                src={userInfo.image}
-                alt={`${userInfo.username}'s profile picture`}
-                width={50}
-                height={50}
-                className="rounded-full"
-              />
-            )}
-            <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
-          </div>
+        <div className="flex flex-col items-center justify-around border-b-2 border-zinc-800 p-4 md:border-x-2">
+          <div className="flex items-center">
+            <div className="flex items-center space-x-3 px-4">
+              {userInfo?.image && (
+                <Image
+                  src={userInfo.image}
+                  alt={`${userInfo.username}'s profile picture`}
+                  width={50}
+                  height={50}
+                  className="rounded-full"
+                />
+              )}
+              <h1 className="text-2xl font-semibold">{userInfo?.username}</h1>
+            </div>
 
-          <div className="flex flex-col items-center justify-center px-4">
-            <FollowBtn
-              followingId={userInfo.id}
-              followersArray={userInfo.followedBy}
-            />
+            <div className="flex flex-col items-center justify-center px-4">
+              <FollowBtn
+                followingId={userInfo.id}
+                followersArray={userInfo.followedBy}
+              />
+            </div>
           </div>
+          {userInfo.about && <div className="pt-4">{userInfo.about}</div>}
         </div>
       )}
       <div className="flex w-full flex-col-reverse break-words">

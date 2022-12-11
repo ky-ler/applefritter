@@ -20,6 +20,12 @@ const usernameSchema = z.object({
     .refine((val) => isAlphanumeric(val, "en-US" /*, { ignore: "_" } */), {
       message: "Username can only contain letters and numbers.",
     }),
+  about: z
+    .string()
+    .min(0)
+    .max(160, {
+      message: "About section can only be a maximum of 160 characters.",
+    }),
 });
 
 const Username: NextPage = () => {
@@ -61,6 +67,7 @@ const Username: NextPage = () => {
               createUsername.mutate({
                 userId: session.user?.id as string,
                 username: data.username,
+                about: data.about,
               });
             })}
             className="flex flex-col items-center space-y-4 pt-8"
@@ -82,6 +89,15 @@ const Username: NextPage = () => {
             {errors.username && (
               <p role="alert">{"" + errors.username.message}</p>
             )}
+            <div className="flex flex-col items-center justify-center md:flex-row">
+              <label htmlFor="about" className="mb-2 md:mb-0 md:mr-4">
+                About You (Optional)
+              </label>
+              <input
+                {...register("about")}
+                className={`rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 tracking-tight transition-all focus:outline-0 active:outline-0`}
+              />
+            </div>
             <button
               disabled={!isDirty || createUsername.isLoading}
               className="mt-2 flex cursor-pointer items-center justify-center rounded-md border-2 border-zinc-800 p-2 transition-colors hover:border-zinc-600 focus:outline-none active:border-zinc-600 active:bg-neutral-800 disabled:cursor-not-allowed disabled:hover:border-zinc-800 disabled:active:bg-transparent"
