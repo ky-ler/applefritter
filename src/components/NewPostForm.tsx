@@ -40,7 +40,8 @@ export const NewPostForm = () => {
   });
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter") {
+    // TODO: Fix empty content (or \r from being accepted)
+    if (event.key === "Enter" && content.length > 1) {
       if (session !== null) {
         newPost.mutate({
           author: session.user?.username as string,
@@ -70,7 +71,7 @@ export const NewPostForm = () => {
         placeholder="New post..."
         minLength={2}
         maxLength={280}
-        onKeyUp={handleKeyUp}
+        // onKeyUp={handleKeyUp}
         onChange={(event) => setContent(event.target.value)}
         className="rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:outline-none"
       />

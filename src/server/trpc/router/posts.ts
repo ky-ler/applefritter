@@ -183,15 +183,15 @@ export const postsRouter = router({
     .input(z.object({ postId: z.string() }))
     .query(async ({ ctx, input }) => {
       try {
-        const post = await ctx.prisma.post.findMany({
+        const replies = [];
+        const originalPost = [];
+        const linkedPost = await ctx.prisma.post.findUnique({
           where: {
-            // id: {
             id: input.postId,
-            // },
           },
           select: {
-            user: true,
             id: true,
+            user: true,
             content: true,
             createdAt: true,
             favorites: true,
@@ -200,45 +200,47 @@ export const postsRouter = router({
             replyPost: true,
           },
         });
-        if (post[0]?.originalPostId) {
-          const replyToPostId = post[0].originalPostId;
-          const postContext = await ctx.prisma.post.findMany({
-            where: {
-              id: replyToPostId,
-            },
-            select: {
-              user: true,
-              id: true,
-              content: true,
-              createdAt: true,
-              favorites: true,
-              originalPostId: true,
-              originalPost: true,
-              replyPost: true,
-            },
-          });
+        if (linkedPost?.originalPostId) {
+          const replyToPostId = linkedPost.originalPostId;
+          originalPost.push(
+            await ctx.prisma.post.findMany({
+              where: {
+                id: replyToPostId,
+              },
+              select: {
+                id: true,
+                user: true,
+                content: true,
+                createdAt: true,
+                favorites: true,
+                originalPostId: true,
+                originalPost: true,
+                replyPost: true,
+              },
+            })
+          );
+        }
 
-          return { post, postContext };
+        if (linkedPost?.replyPost) {
+          replies.push(
+            await ctx.prisma.post.findMany({
+              where: {
+                originalPostId: input.postId,
+              },
+              select: {
+                id: true,
+                user: true,
+                content: true,
+                createdAt: true,
+                favorites: true,
+                originalPostId: true,
+                originalPost: true,
+                replyPost: true,
+              },
+            })
+          );
         }
-        if (post[0]?.replyPost) {
-          const replies = await ctx.prisma.post.findMany({
-            where: {
-              originalPostId: input.postId,
-            },
-            select: {
-              user: true,
-              id: true,
-              content: true,
-              createdAt: true,
-              favorites: true,
-              originalPostId: true,
-              originalPost: true,
-              replyPost: true,
-            },
-          });
-          return { post, replies };
-        }
-        return { post };
+        return { linkedPost, replies, originalPost };
       } catch (error) {
         console.error(error);
       }

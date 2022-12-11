@@ -28,16 +28,20 @@ const User = () => {
 
   return (
     <Layout>
-      <div className="flex w-full flex-col-reverse break-words">
-        {posts?.replies?.map((post, index) => {
-          return <PostComponent key={index} post={post} />;
-        })}
-        {posts?.post?.map((post, index) => {
-          return <PostComponent key={index} post={post} />;
-        })}
-        {posts?.postContext?.map((post, index) => {
-          return <PostComponent key={index} post={post} />;
-        })}
+      <div className="flex w-full flex-col break-words">
+        {posts?.originalPost &&
+          posts?.originalPost?.flat().map((post, index) => {
+            return <PostComponent key={index} post={post} />;
+          })}
+        {posts?.linkedPost && (
+          <div className="bg-neutral-800">
+            <PostComponent post={posts?.linkedPost} />
+          </div>
+        )}
+        {posts?.replies &&
+          posts?.replies?.flat().map((post, index) => {
+            return <PostComponent key={index} post={post} />;
+          })}
       </div>
     </Layout>
   );

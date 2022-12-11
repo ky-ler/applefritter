@@ -1,24 +1,13 @@
-import type { Favorite, Post, User } from "@prisma/client";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import Link from "next/link";
+import type { PostWithUser } from "../types/post";
 import { DeletePostBtn } from "./DeletePostBtn";
 import { FavoriteBtn } from "./FavoriteBtn";
 import { NewReply } from "./NewReply";
 
 dayjs.extend(relativeTime);
-
-type PostWithUser = {
-  id: string;
-  user: User;
-  content: string;
-  createdAt: Date;
-  favorites: Favorite[];
-  originalPostId: string | null;
-  originalPost: Post | null;
-  replyPost: Post[];
-};
 
 const PostComponent = ({ post }: { post: PostWithUser }) => {
   return (

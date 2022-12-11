@@ -32,7 +32,8 @@ export const NewReply = ({
   });
 
   const handleKeyUp = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === "Enter") {
+    // TODO: Fix empty content (or \r from being accepted)
+    if (event.key === "Enter" && content.length > 1) {
       if (session !== null) {
         newReply.mutate({
           author: session.user?.username as string,
@@ -82,7 +83,7 @@ export const NewReply = ({
               minLength={2}
               maxLength={280}
               onChange={(event) => setContent(event.target.value)}
-              onKeyUp={handleKeyUp}
+              // onKeyUp={handleKeyUp}
               className="w-full rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:border-current focus:outline-none"
             />
             {/* </fieldset> */}
