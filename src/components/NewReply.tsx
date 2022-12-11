@@ -31,6 +31,20 @@ export const NewReply = ({
     },
   });
 
+  const handleKeyUp = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter") {
+      if (session !== null) {
+        newReply.mutate({
+          author: session.user?.username as string,
+          content,
+          postId: postId,
+        });
+      }
+
+      setContent("");
+    }
+  };
+
   const handleSubmit = () => {
     if (session !== null) {
       newReply.mutate({
@@ -68,6 +82,7 @@ export const NewReply = ({
               minLength={2}
               maxLength={280}
               onChange={(event) => setContent(event.target.value)}
+              onKeyUp={handleKeyUp}
               className="w-full rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:outline-none"
             />
             {/* </fieldset> */}
