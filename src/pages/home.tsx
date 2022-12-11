@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import React from "react";
 import { NewPostForm } from "../components/NewPostForm";
 import { PostComponent } from "../components/PostComponent";
 import Layout from "../layouts/Layout";
