@@ -37,7 +37,7 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/home",
     signOut: "/",
-    newUser: "/username", // New users will be directed here on first sign in (leave the property out if not of interest)
+    newUser: "/register", // New users will be directed here on first sign in (leave the property out if not of interest)
   },
 };
 

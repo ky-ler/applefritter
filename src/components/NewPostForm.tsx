@@ -11,7 +11,7 @@ export const NewPostForm = () => {
 
   const router = useRouter();
 
-  if (!session?.user?.username) router.push("/username");
+  if (!session?.user?.username) router.push("/register");
 
   const uid = session?.user?.id as string;
 
