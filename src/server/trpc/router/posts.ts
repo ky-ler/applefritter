@@ -179,4 +179,68 @@ export const postsRouter = router({
         console.error(error);
       }
     }),
+  getPostById: publicProcedure
+    .input(z.object({ postId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      try {
+        const post = await ctx.prisma.post.findMany({
+          where: {
+            // id: {
+            id: input.postId,
+            // },
+          },
+          select: {
+            user: true,
+            id: true,
+            content: true,
+            createdAt: true,
+            favorites: true,
+            originalPostId: true,
+            originalPost: true,
+            replyPost: true,
+          },
+        });
+        if (post[0]?.originalPostId) {
+          const replyToPostId = post[0].originalPostId;
+          const postContext = await ctx.prisma.post.findMany({
+            where: {
+              id: replyToPostId,
+            },
+            select: {
+              user: true,
+              id: true,
+              content: true,
+              createdAt: true,
+              favorites: true,
+              originalPostId: true,
+              originalPost: true,
+              replyPost: true,
+            },
+          });
+
+          return { post, postContext };
+        }
+        if (post[0]?.replyPost) {
+          const replies = await ctx.prisma.post.findMany({
+            where: {
+              originalPostId: input.postId,
+            },
+            select: {
+              user: true,
+              id: true,
+              content: true,
+              createdAt: true,
+              favorites: true,
+              originalPostId: true,
+              originalPost: true,
+              replyPost: true,
+            },
+          });
+          return { post, replies };
+        }
+        return { post };
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });

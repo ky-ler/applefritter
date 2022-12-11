@@ -22,7 +22,7 @@ type PostWithUser = {
 
 const PostComponent = ({ post }: { post: PostWithUser }) => {
   return (
-    <div className="border-b-2 border-zinc-800 p-4  md:border-x-2">
+    <div className="border-b-2 border-zinc-800 p-4 md:border-x-2">
       <div className="flex items-center">
         {post.user?.image && (
           <Image
@@ -40,13 +40,23 @@ const PostComponent = ({ post }: { post: PostWithUser }) => {
           >
             @{post.user.username}
           </Link>{" "}
-          {post.originalPost && (
-            <>&bull; Replying to {post.originalPost.author}</>
-          )}{" "}
-          &bull; {dayjs(post.createdAt).fromNow()}{" "}
+          <span> &bull; </span>
+          <Link href={`/status/${post.id}`} className="text-emerald-500">
+            {dayjs(post.createdAt).fromNow()}
+          </Link>
         </span>
       </div>
-      <p className="py-4">{post.content}</p>
+      <p className="py-4">
+        {post.originalPost && (
+          <Link
+            href={`/user/${post.originalPost?.author}`}
+            className="text-emerald-400"
+          >
+            @{post.originalPost.author}
+          </Link>
+        )}{" "}
+        {post.content}
+      </p>
       <div className="items flex items-center justify-start space-x-4">
         <div>
           <NewReply postId={post.id} replyTo={post.user.username} />
