@@ -85,4 +85,20 @@ export const userRouter = router({
         console.error(error);
       }
     }),
+  updateAboutMe: protectedProcedure
+    .input(z.object({ userName: z.string(), about: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.user.update({
+          where: {
+            username: input.userName,
+          },
+          data: {
+            about: input.about,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }),
 });

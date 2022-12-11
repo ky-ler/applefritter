@@ -83,7 +83,7 @@ export const NewReply = ({
               maxLength={280}
               onChange={(event) => setContent(event.target.value)}
               onKeyUp={handleKeyUp}
-              className="w-full rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:outline-none"
+              className="w-full rounded-md border-2 border-zinc-800 bg-neutral-900 px-4 py-2 transition-all focus:border-current focus:outline-none"
             />
             {/* </fieldset> */}
 
