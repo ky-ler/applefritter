@@ -7,9 +7,9 @@ const Navbar = () => {
   return (
     <>
       <header className="border-neutral-800 md:block md:w-2/12 md:border-r-2">
-        <nav className="fixed bottom-0 flex h-24 w-screen border-t-2 border-neutral-800 bg-neutral-900 py-8 md:bottom-auto md:top-0 md:h-screen md:w-auto md:justify-center md:border-t-0">
-          <div className="flex h-auto w-full items-center text-2xl md:h-full md:w-auto md:flex-col md:space-x-0 md:space-y-3 ">
-            <ul className="flex h-full w-full items-center justify-around md:h-auto md:flex-col md:items-start md:justify-between md:space-x-0 md:space-y-3">
+        <nav className="fixed bottom-0 flex h-24 w-screen border-t-2 border-neutral-800 bg-neutral-900 py-8 md:left-12 md:bottom-auto md:top-0 md:h-screen md:w-auto md:justify-center md:border-t-0 lg:left-28 xl:left-40 2xl:left-64">
+          <div className="flex-end flex h-auto w-full items-center text-2xl md:h-full md:w-auto md:flex-col md:space-x-0 md:space-y-3 ">
+            <ul className="flex h-full w-full items-center justify-around md:h-auto md:flex-col md:items-end md:justify-between md:space-x-0 md:space-y-3">
               {!session && (
                 <li>
                   <Link href="/">All Posts</Link>
