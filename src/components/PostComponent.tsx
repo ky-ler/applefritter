@@ -51,7 +51,7 @@ const PostComponent = ({ post }: { post: PostWithUser }) => {
           <>
             Replying to{" "}
             <Link
-              href={`/user/${post.originalPost?.author}`}
+              href={`/status/${post.originalPost.id}`}
               className="text-emerald-400"
             >
               @{post.originalPost.author}
