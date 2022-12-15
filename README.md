@@ -1,5 +1,5 @@
 # AppleFritter
-I originally set out to create a Twitter clone. I wanted it to look, and feel different from Twitter, while retaining the core functionality of Twtiter. While AppleFritter is still a WIP, but I am proud of the progress I have made so far, and and am excited to continue working on AppleFritter. 
+I originally set out to create a Twitter clone. I wanted it to look, and feel different from Twitter, while retaining the core functionality of Twtiter. While AppleFritter is still a WIP, I am proud of the progress I have made so far, and am excited to continue working on AppleFritter. 
 
 **Link to project:** http://applefritter.vercel.app
 
