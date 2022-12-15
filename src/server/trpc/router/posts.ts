@@ -246,6 +246,7 @@ export const postsRouter = router({
           }
         }
 
+        // TODO: Allow for threads to be viewed by clicking on the 1st post in the thread rather than the last
         if (linkedPost?.replyPost) {
           replies.push(
             await ctx.prisma.post.findMany({
