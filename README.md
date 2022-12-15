@@ -1,28 +1,20 @@
-# Create T3 App
+# AppleFritter
+I originally set out to create a Twitter clone. I wanted it to look, and feel different from Twitter, while retaining the core functionality of Twtiter. While AppleFritter is still a WIP, but I am proud of the progress I have made so far, and and am excited to continue working on AppleFritter. 
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+**Link to project:** http://applefritter.vercel.app
 
-## What's next? How do I make an app with this?
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## How It's Made:
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+**Tech used:** TypeScript, Next.js, React, PostgreSQL, Tailwind, Prisma, tRPC, NextAuth
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+The original version of AppleFritter had a separate backend using Express, with MongoDB, and TypeScript. However, the database very quickly became too much of a hassle to even ATTEMPT to maintain. I completely scrapped the original version, and realized that a relational database would be MUCH better to work with and maintain. 
 
-## Learn More
+I opted to rebuild AppleFritter with [create-t3-app](https://github.com/t3-oss/create-t3-app)
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## Lessons Learned:
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+I have learned SO much during the making of this project. I had no prior knowledge with any of the following: Next.js, NextAuth, PostgreSQL, Prisma, and tRPC. I have learned so much about the importance of database design. After working with PostgreSQL, I realize how amazing it is to work with relational databases. Prior to this project, I've only used non-relational databases.
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
-
-## How do I deploy this?
-
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## Shoutout
+Thank you [Ali](https://twitter.com/endingwithali) for coming up with the name AppleFritter ❣️
