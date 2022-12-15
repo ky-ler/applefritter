@@ -30,9 +30,12 @@ const User = () => {
     <Layout>
       <div className="flex w-full flex-col break-words">
         {posts?.originalPost &&
-          posts?.originalPost?.flat().map((post, index) => {
-            return <PostComponent key={index} post={post} />;
-          })}
+          posts?.originalPost
+            ?.flat()
+            .reverse()
+            .map((post, index) => {
+              return <PostComponent key={index} post={post} />;
+            })}
         {posts?.linkedPost && (
           <div className="bg-neutral-800">
             <PostComponent post={posts?.linkedPost} />

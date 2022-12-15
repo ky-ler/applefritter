@@ -203,7 +203,7 @@ export const postsRouter = router({
         if (linkedPost?.originalPostId) {
           const replyToPostId = linkedPost.originalPostId;
           originalPost.push(
-            await ctx.prisma.post.findMany({
+            await ctx.prisma.post.findUnique({
               where: {
                 id: replyToPostId,
               },
@@ -219,6 +219,31 @@ export const postsRouter = router({
               },
             })
           );
+          if (originalPost.at(-1)!.originalPostId) {
+            let threadId: string | null | undefined =
+              originalPost.at(-1)!.originalPostId;
+            while (threadId) {
+              originalPost.push(
+                await ctx.prisma.post.findUnique({
+                  where: {
+                    id: threadId,
+                  },
+                  select: {
+                    id: true,
+                    user: true,
+                    content: true,
+                    createdAt: true,
+                    favorites: true,
+                    originalPostId: true,
+                    originalPost: true,
+                    replyPost: true,
+                  },
+                })
+              );
+
+              threadId = originalPost.at(-1)?.originalPostId;
+            }
+          }
         }
 
         if (linkedPost?.replyPost) {
