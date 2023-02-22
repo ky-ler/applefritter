@@ -15,7 +15,3 @@ I opted to rebuild AppleFritter with [create-t3-app](https://github.com/t3-oss/c
 ## Lessons Learned:
 
 I have learned SO much during the making of this project. I had no prior knowledge with any of the following: Next.js, NextAuth, PostgreSQL, Prisma, and tRPC. I have learned so much about the importance of database design. After working with PostgreSQL, I realize how amazing it is to work with relational databases. Prior to this project, I've only used non-relational databases.
-
-## Shoutout
-
-Thank you [Ali](https://twitter.com/endingwithali) for coming up with the name AppleFritter ❣️
