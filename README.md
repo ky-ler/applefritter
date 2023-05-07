@@ -38,6 +38,8 @@ Signup Process
 
 ![Signup Process](https://github.com/ky-ler/applefritter/raw/main/media/signup_process.png)
 
-"My Feed" page gives user an error when either 1: they don't follow anyone or 2: the users they follow have not posted anything
+"My Feed" page gives user an error when either 
+  - 1: they don't follow anyone or 
+  - 2: the users they follow have not posted anything
 
 !["My Feed" page when a user doesn't follow anyone gives an error](https://github.com/ky-ler/applefritter/raw/main/media/feed_without_following_anyone.png)
