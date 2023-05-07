@@ -20,24 +20,24 @@ I have learned SO much during the making of this project. I had no prior knowled
 
 "All Posts" Feed
 
-!["All Posts" Feed](https://github.com/ky-ler/moviepass/raw/main/media/main.png)
+!["All Posts" Feed](https://github.com/ky-ler/applefritter/raw/main/media/main.png)
 
 Login Page
 
-![Login Page](https://github.com/ky-ler/moviepass/raw/main/media/login_page.png)
+![Login Page](https://github.com/ky-ler/applefritter/raw/main/media/login_page.png)
 
 Profile Page
 
-![Profile Page](https://github.com/ky-ler/moviepass/raw/main/media/profile_page.png)
+![Profile Page](https://github.com/ky-ler/applefritter/raw/main/media/profile_page.png)
 
 Example of a post thread (similar to one on Twitter)
 
-![Post Thread](https://github.com/ky-ler/moviepass/raw/main/media/thread_example.png)
+![Post Thread](https://github.com/ky-ler/applefritter/raw/main/media/thread_example.png)
 
 Signup Process
 
-![Signup Process](https://github.com/ky-ler/moviepass/raw/main/media/signup_process.png)
+![Signup Process](https://github.com/ky-ler/applefritter/raw/main/media/signup_process.png)
 
 "My Feed" page gives user an error when either 1: they don't follow anyone or 2: the users they follow have not posted anything
 
-!["My Feed" page when a user doesn't follow anyone gives an error](https://github.com/ky-ler/moviepass/raw/main/media/feed_without_following_anyone.png)
+!["My Feed" page when a user doesn't follow anyone gives an error](https://github.com/ky-ler/applefritter/raw/main/media/feed_without_following_anyone.png)
