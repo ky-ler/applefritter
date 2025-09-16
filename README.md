@@ -1,8 +1,8 @@
 # AppleFritter
 
-I originally set out to create a Twitter clone. I wanted it to look, and feel different from Twitter, while retaining the core functionality of Twtiter.
+> Note: This project was completed in 2023 and is no longer actively maintained.
 
-> I have taken the live site down and included images of the site below.
+I originally set out to create a Twitter clone. I wanted it to look, and feel different from Twitter, while retaining the core functionality of Twtiter.
 
 ## How It's Made:
 
